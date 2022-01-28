@@ -45,6 +45,8 @@ public class Frame extends JPanel implements KeyListener, ActionListener{
 	sword marioS = new sword(0, 1000);
 	counter marioC = new counter(1000, 510);
 	counter peachC = new counter(1000, 510);
+	Font font= new Font("Serif", Font.BOLD, 24);
+	
 	boolean marioAttack = false; 
 	boolean peachAttack = false; 
 	boolean hasAttackedP = false, hasAttackedM = false;
@@ -93,7 +95,9 @@ public class Frame extends JPanel implements KeyListener, ActionListener{
 		if(other.getHealth()<=0) {
 			peach1.setX(-1000);
 		}
+		
 		if(marioC.getY()==30) {
+			marioAttack=false;
 			marioS.setX(10000);
 		}
 		if(peachC.getY()==20) {
@@ -102,6 +106,9 @@ public class Frame extends JPanel implements KeyListener, ActionListener{
 		}
 		if(peachC.getY()==50) {
 			hasAttackedP = false; 
+		}
+		if(marioC.getY()==50) {
+			hasAttackedM=false;
 		}
 		peachC.setY(peachC.getY()+1);
 		marioC.setY(marioC.getY()+1);
@@ -113,7 +120,17 @@ public class Frame extends JPanel implements KeyListener, ActionListener{
 //					test.setFallSpeed(-1);
 //					
 //				}
-			
+		if(other.getHealth()<0) {
+			g.setFont(font);
+			g.drawString("Player 1 wins!", 10, 100);
+				other.setX(1000000);
+			}if(test.getHealth()<0) {
+				g.setFont(font);
+				g.drawString("Player 2 wins", 10, 100);
+				test.setX(100000);
+			}
+
+		
 		
 		
 		
@@ -155,6 +172,8 @@ public class Frame extends JPanel implements KeyListener, ActionListener{
 		if(peachS.getX()<=test.getX() && peachS.getX()+100 >= test.getX() && peachS.getY() <= test.getY()+100 && peachS.getY() >= test.getY()) {
 			test.setHealth(test.getHealth()-15);
 			System.out.println("test");
+		}if(marioS.getX()<=other.getX() && marioS.getX()+100>=other.getX()&& marioS.getY()<=other.getY()+100 && marioS.getY() >= other.getY()) {
+			other.setHealth(other.getHealth()-15);
 		}
 		if(peachAttack && peachLeft) {
 			peachS.setX(other.getX()-60);
@@ -232,20 +251,35 @@ public class Frame extends JPanel implements KeyListener, ActionListener{
 		if(arg0.getKeyCode()==68) {
 			other.changePicture("/imgs/peach.png");
 			other.setSpeed(5);
+			peachS.changePicture("/imgs/sword.png");
 			
 		}if(arg0.getKeyCode()==65) {
 			other.setSpeed(-5);
 			other.changePicture("/imgs/peachleft.png");
+			peachS.changePicture("/imgs/swordleft.png");
+			
+			
+			
 		}
 		if(arg0.getKeyCode()==70 && hasAttackedP == false) {
 			peachAttack = true;
 			peachC.setY(0);
+			
 			hasAttackedP = true;
+			
 		}
-		if(arg0.getKeyCode()==96 && hasAttackedM == false) {
+		if(arg0.getKeyCode()==155 && hasAttackedM == false) {
 			marioAttack=true;
 			marioC.setY(0);
+		
 			hasAttackedM = true; 
+			
+		}
+		if(arg0.getKeyCode()==82) {
+				test.setX(0);
+				other.setX(0);
+				test.setHealth(450);
+				other.setHealth(450);
 		}
 
 
@@ -258,12 +292,14 @@ public class Frame extends JPanel implements KeyListener, ActionListener{
 		if(arg0.getKeyCode()==39) {
 			test.setSpeed(0);
 			test.changePicture("/imgs/Mario standing.png");
+			marioS.changePicture("/imgs/sword.png");
 			onRight=false;
 		}
 		if(arg0.getKeyCode()==37) {
 			test.setSpeed(0);
 			onLeft =false; 
-			test.changePicture("/imgs/mario leftstanding.png");
+			test.changePicture("/imgs/mario leftstandingpr.png");
+			marioS.changePicture("/imgs/swordleft.png");
 		}
 		if(arg0.getKeyCode()==68) {
 			other.setSpeed(0);

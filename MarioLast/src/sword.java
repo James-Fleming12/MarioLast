@@ -72,12 +72,12 @@ import java.awt.Graphics;
 			//update the picture variable location
 		private void update() {
 			tx.setToTranslation(x,y);
-			tx.scale(0.2, 0.2);
+			tx.scale(0.15, 0.15);
 		}
 		
 		private void init(double a, double b) {
 			tx.setToTranslation(a, b);
-			tx.scale(.2, .2);
+			tx.scale(.15, .15);
 		}
 
 		private Image getImage(String path) {
