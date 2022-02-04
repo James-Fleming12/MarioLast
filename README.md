@@ -8,3 +8,4 @@ This is a video of our gameplay, it shows off our hitboxes for peach and mario's
 This is a picture of our code for mechanics. It shows off the collision for the swords between either peach or marios sword with their character. 
 
 ![Capture](https://user-images.githubusercontent.com/89215863/152472386-b8f98fac-a557-47f5-a60b-baeac105b642.PNG)
+This picture is how we changed the sprites when mario jumped and walked and faced left.
